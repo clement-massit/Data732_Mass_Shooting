@@ -27,7 +27,7 @@
 }
 
 .county-boundary:hover, .state:hover {
-  fill: orange;
+  fill: rgb(44, 205, 211);
 }
 
 /*
@@ -66,4 +66,39 @@ th.aes:after {
 .tooltip{
   height:500px;
   width:500px;
+}
+/* *************************CARTE************************* */
+
+#svg {
+  display: block;
+  margin: auto;
+}
+
+/** La souris change pour un curseur sur un département et le contour est noir avec une épaisseur assez fine */
+.state {
+  cursor: pointer;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: #888;
+  stroke-width: .5px;
+}
+
+/** Au survol d'un département le contour devient plus épais */
+.state:hover {
+  stroke-width: 2px;
+}
+
+/** Le tooltip est défini avec des propriétés statiques qui conviennent à nos données */
+div.tooltip {
+  position: absolute;
+  text-align: center;
+  color: rgb(126, 117, 117);
+  width: 275px;
+  height: 37px;
+  padding: 2px;
+  font: 12px sans-serif;
+  background: grey;
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
 }
