@@ -33,7 +33,7 @@ let gmap = svgMap.append("g")
     .attr('width', width_map + margin_map.left + margin_map.right)
     .attr('height', height_map + margin_map.top + margin_map.bottom);
 
-var div = d3.select("body").append("div")   
+let div1 = d3.select("body").append("div")   
     .attr("class", "tooltip")               
     .style("opacity", 0);
 ///////////////////// Création de la carte ////////////////////////////
@@ -98,6 +98,37 @@ all_states = {
     "Puerto Rico"            :  "72",
     "Virgin Islands"         :  "78"
   }
+
+
+  //////////////////////////////////////////////////////////////////BAR CHART//////////////////////////////////////////////////////////////////
+
+const margin = {top: 20, right: 20, bottom: 90, left: 120},
+width = 800 - margin.left - margin.right,
+height = 400 - margin.top - margin.bottom;
+
+const x = d3.scaleBand()
+.range([0, width])
+.padding(0.1);
+
+const y = d3.scaleLinear()
+.range([height, 0]);
+
+let svg = d3.select("body").append("svg")
+.attr("id", "svg")
+.attr("width", width + margin.left + margin.right)
+.attr("height", height + margin.top + margin.bottom)
+.append("g")
+.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+let div2 = d3.select("body").append("div")   
+    .attr("class", "tooltip")               
+    .style("opacity", 0);
+
+let total_death = 0;
+states_data = {};
+var cpt = 0
+
+/////////////////////////////////// Display ///////////////////////////////////
 
 Promise.all(promises).then(function (values) {
     let us = values[0]
@@ -189,100 +220,29 @@ Promise.all(promises).then(function (values) {
             .attr("class", d =>"state q" + quantile(+e["# Killed"]) + "+9")   
             .on("mouseover", function(event, d) {
                 console.log(e)
-                div.transition()        
+                div1.transition()        
                     .duration(200)      
                     .style("opacity", .9);
-                div.html("<b>State : </b>" + data2[i]["State"] + "<br>"
+                div1.html("<b>State : </b>" + data2[i]["State"] + "<br>"
                         + "<b>Kills : </b>" + data2[i]["# Killed"] + "<br>")
                     .style("left", (event.pageX + 30) + "px")     
                     .style("top", (event.pageY - 30) + "px");
                     
             })
             .on("mouseout", function(event, d) {
-                    div.style("opacity", 0);
-                    div.html("")
-                        .style("left", "-500px")
-                        .style("top", "-500px");
+                div1.transition()
+                    .duration(500)
+                    .style("opacity", 0);
             });
     });
     d3.select("select").on("change", function() {
         d3.selectAll("svg").attr("class", this.value);
     });
-});
-
-function displayStateDeath(currentId) {
-    console.log(currentId)
-
-}
 
 
-
-
-
-
-
-//////////////////////////////////////////////////////////////////BAR CHART//////////////////////////////////////////////////////////////////
-
-const margin = {top: 20, right: 20, bottom: 90, left: 120},
-    width = 800 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
-
-const x = d3.scaleBand()
-    .range([0, width])
-    .padding(0.1);
-
-const y = d3.scaleLinear()
-    .range([height, 0]);
-
-const svg = d3.select("body").append("svg")
-    .attr("id", "svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-
-let total_death = 0;
-states_data = {};
-var cpt = 0
-
-d3.json("./data/Mass_shooting_data.json").then(function(data) {
-    ///////////////////// Initialisation des données ////////////////////////////
-    for (var i = 0; i < data.length; i++) {
-        total_death += parseInt(data[i]["# Killed"]);
-        
-        if (!states_data.hasOwnProperty(data[i]["State"])) {
-            state = {};
-            state["id"] = cpt;
-            state["kill"] = 0;
-            states_data[data[i]["State"]] = state;
-
-            cpt++;
-        }
-        
-        states_data[data[i]["State"]]["kill"] += data[i]["# Killed"];
-
-    }
-    
-    states = [];
-    kills = []
-    
-    for(const [state, values] of Object.entries(states_data)){
-        states.push(state);
-        kills.push(values["kill"])
-    }
-    
 
 
     ///////////////////// Création du barchart ////////////////////////////
-
-    data2 = []
-    for(let i in states){
-        tmp = {}
-        tmp["State"] = states[i]
-        tmp["# Killed"] = kills[i]
-        data2.push(tmp)
-    }
 
     data2.forEach(d => d["# Killed"] = +d["# Killed"]);
 
@@ -326,16 +286,16 @@ d3.json("./data/Mass_shooting_data.json").then(function(data) {
             .attr("y", d => y(d["# Killed"]))
             .attr("height", d => height - y(d["# Killed"]))
             .on("mouseover", function(event, d) {
-                div.transition()        
+                div2.transition()        
                     .duration(200)      
                     .style("opacity", .9);
                 
-                div.html("State : " + data2[d]["State"] + "<br>Kills : " + data2[d]["# Killed"])
+                div2.html("State : " + data2[d]["State"] + "<br>Kills : " + data2[d]["# Killed"])
                     .style("left", (event.pageX + 10) + "px")     
                     .style("top", (event.pageY - 50) + "px");
             })
             .on("mouseout", function(event, d) {
-                div.transition()
+                div2.transition()
                     .duration(500)
                     .style("opacity", 0);
             });

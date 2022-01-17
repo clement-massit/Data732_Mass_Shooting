@@ -63,10 +63,6 @@ th.aes:after {
   content: "\21E7";
 }
 
-.tooltip{
-  height:500px;
-  width:500px;
-}
 /* *************************CARTE************************* */
 
 #svg {
@@ -89,15 +85,15 @@ th.aes:after {
 }
 
 /** Le tooltip est défini avec des propriétés statiques qui conviennent à nos données */
-div.tooltip {
+.tooltip {
   position: absolute;
   text-align: center;
-  color: rgb(126, 117, 117);
+  color: rgb(255, 255, 255);
   width: 275px;
   height: 37px;
   padding: 2px;
   font: 12px sans-serif;
-  background: grey;
+  background: black;
   border: 0px;
   border-radius: 8px;
   pointer-events: none;
