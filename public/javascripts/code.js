@@ -1,3 +1,5 @@
+
+
 let margin_map = { top: 10, bottom: 10, left: 10, right: 10 };
 
 let width_map = 750;
@@ -6,8 +8,9 @@ let ratio_map = 0.7;
 let height_map = width_map * ratio_map;
 
 
-let svgMap = d3.select('body').append('svg')
-    .attr("id", "svg_map")
+let svgMap = d3.select('.card')
+    .append('svg')
+    .attr("id", "cards")
     .attr('class', 'center-container Blues')
     .attr('height', height_map + margin_map.top + margin_map.bottom)
     .attr('width', width_map + margin_map.left + margin_map.right)
@@ -31,7 +34,7 @@ let gmap = svgMap.append("g")
     .attr('width', width_map + margin_map.left + margin_map.right)
     .attr('height', height_map + margin_map.top + margin_map.bottom);
 
-let div1 = d3.select("body").append("div")
+let div1 = d3.select(".card").append("div")
     .attr("class", "tooltip")
     .style("opacity", 0);
 
@@ -103,6 +106,9 @@ let total_death = 0;
 states_data = {};
 var cpt = 0
 
+
+
+
 Promise.all(promises).then(function (values) {
     let us = values[0]
     let data = values[1]
@@ -121,7 +127,7 @@ Promise.all(promises).then(function (values) {
         states_data[data[i]["State"]]["kill"] += data[i]["# Killed"];
 
     }
-
+    
 
     let states = [];
     let kills = []
@@ -147,13 +153,13 @@ Promise.all(promises).then(function (values) {
     ///////////////////////////////////////////////// CIRCULAR POINTS ////////////////////////////////////////////////////////
 
     // set the dimensions and margins of the graph
-    var width_circular = 600
+    var width_circular = 750
     var height_circular = 531
 
     // append the svg object to the body of the page
-    var svg_circular = d3.select("body")
+    var svg_circular = d3.select(".card")
         .append("svg")
-        .attr("class", "circular")
+        .attr("id", "cards")
         .attr("width", width_circular)
         .attr("height", height_circular)
 
@@ -267,16 +273,16 @@ Promise.all(promises).then(function (values) {
     const y = d3.scaleLinear()
         .range([height, 0]);
 
-    let svg = d3.select("body").append("svg")
+    let svg = d3.select(".card").append("svg")
         .attr("id", "svg")
-        .attr("class", "bar")
+        .attr("id", "cards")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
-    let div2 = d3.select("body").append("div")
+    let div2 = d3.select(".card").append("div")
         .attr("class", "tooltip")
         .style("opacity", 0);
 
@@ -458,84 +464,8 @@ Promise.all(promises).then(function (values) {
                 .style("opacity", 0);
         });
 
-///////////////////////////////////////////////////
     
 
-    // set the dimensions and margins of the graph
-    var margin_hex = { top: 10, right: 30, bottom: 30, left: 40 },
-        width_hex = 460 - margin_hex.left - margin_hex.right,
-        height_hex = 400 - margin_hex.top - margin_hex.bottom;
-
-    // append the svg object to the body of the page
-    var svg_hex = d3.select("body")
-        .append("svg")
-        .attr("width", width_hex + margin_hex.left + margin_hex.right)
-        .attr("height", height_hex + margin_hex.top + margin_hex.bottom)
-        .append("g")
-        .attr("transform",
-            "translate(" + margin_hex.left + "," + margin_hex.top + ")");
-
-   
-
-    // Add X axis
-    var x_hex = d3.scaleLinear()
-        .domain([5, 18])
-        .range([0, width_hex]);
-    svg_hex.append("g")
-        .attr("transform", "translate(0," + height_hex + ")")
-        .call(d3.axisBottom(x_hex));
-
-    // Add Y axis
-    var y_hex = d3.scaleLinear()
-        .domain([5, 20])
-        .range([height_hex, 0]);
-    svg_hex.append("g")
-        .call(d3.axisLeft(y_hex));
-
-    // Reformat the data: d3.hexbin() needs a specific format
-    var inputForHexbinFun = []
-    data2.forEach(function (d) {
-        inputForHexbinFun.push([x(d.x_hex), y(d.y_hex)])  // Note that we had the transform value of X and Y !
-    })
-
-    // Prepare a color palette
-    var color_hex = d3.scaleLinear()
-        .domain([0, 600]) // Number of points in the bin?
-        .range(["transparent", "#69b3a2"])
-
-    // Compute the hexbin data
-    const hexbin = d3.hexbin()
-        .radius(9) // size of the bin in px
-        .extent([[0, 0], [width_hex, height_hex]])
-
-    // Plot the hexbins
-    svg_hex.append("clipPath")
-        .attr("id", "clip")
-        .append("rect")
-        .attr("width", width_hex)
-        .attr("height", height_hex)
-    console.log(data2[x_hex])
-    svg.append("g")
-        .attr("stroke", "#000")
-        .attr("stroke-opacity", 0.1)
-      .selectAll("path")
-      .data(data2)
-      .join("path")
-        .attr("d", hexbin.hexagon())
-        .attr("transform", d => `translate(${x_hex},${y_hex})`)
-        .attr("fill", d => color(d.length))
-
-    /*svg_hex.append("g")
-        .attr("clip-path", "url(#clip)")
-        .selectAll("path")
-        .data(hexbin(inputForHexbinFun))
-        .enter().append("path")
-        .attr("d", hexbin.hexagon())
-        .attr("transform", d => `translate(${d.x},${d.y})`)
-        .attr("fill", d => color_hex(d.length))
-        .attr("stroke", "black")
-        .attr("stroke-width", "0.1")*/
-  
-    
 });
+
 

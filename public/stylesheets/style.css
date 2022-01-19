@@ -1,16 +1,32 @@
+*{margin: 0;
+padding: 0;
+}
+
 .background {
   fill: none;
   pointer-events: all;
 
 }
-body{
+
+.card{
   background-color: rgb(255, 255, 255);
+  display: grid;
+  max-width: 1250px;
+  margin: 0 auto;
+  grid-template-columns: 780px 531px;
+  grid-gap: 60px;
+  grid-row-gap: 30px;
+  justify-content: center;
+  justify-items: center;
+
+
 }
 
 .title{
   text-align: center;
   font-size: 32px;
-  font-family:sans-serif
+  font-family:sans-serif;
+  margin-bottom: 30px;
 }
 
 #states {
@@ -73,13 +89,6 @@ th.aes:after {
   content: "\21E7";
 }
 
-/* *************************CARTE************************* */
-#svg_map{
-  background-color: #E5E7EB; 
-  border-radius: 3px;
-  margin-top: 45px;
-  margin-left: 40px;
-}
 
 
 
@@ -113,24 +122,24 @@ div.tooltip {
   font-size: 15px;
   padding: 7px;
 }
-/* BAR CHART */ 
 
-.bar{
+
+
+
+#cards {
   background-color: #E5E7EB;
-  color: black;
   border-radius: 3px;
-  margin-top: 45px;
-  margin-left: 40px;
-
-  
+  margin-bottom: 20px;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.1), 
+    0 2px 2px rgba(0,0,0,0.1), 
+    0 4px 4px rgba(0,0,0,0.1), 
+    0 8px 8px rgba(0,0,0,0.1),
+    0 16px 16px rgba(0,0,0,0.1);
 
 }
-
-/* CIRCULAR PACKING */
-
-.circular {
-  background-color: #E5E7EB;  
-  border-radius: 3px;
-  margin-left: 7vw;
-
+@media (min-width: 100px) {
+  .card { grid-template-columns: repeat(1, 1fr); }
+}
+@media (min-width: 1300px) {
+  .card { grid-template-columns: repeat(2, 1fr); }
 }
