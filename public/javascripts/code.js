@@ -127,7 +127,7 @@ Promise.all(promises).then(function (values) {
         states_data[data[i]["State"]]["kill"] += data[i]["# Killed"];
 
     }
-    
+
 
     let states = [];
     let kills = []
@@ -221,7 +221,7 @@ Promise.all(promises).then(function (values) {
         .attr("text-anchor", "middle")
         .style("font-size", "24px")
         .attr("font-family", "sans-serif")
-        .text("Circular Packing concerning mass shooting");
+        .text("Circular Packing concerning mass shooting by states");
 
 
 
@@ -350,7 +350,7 @@ Promise.all(promises).then(function (values) {
         .attr("padding-bottom", "20px")
         .style("font-size", "24px")
         .attr("font-family", "sans-serif")
-        .text("Distribution of mass shootings by states");
+        .text("Distribution of mass shootings by states since 2016");
 
     var legendScale = d3.scaleLinear()
         .domain([0, max_kill])
@@ -464,7 +464,10 @@ Promise.all(promises).then(function (values) {
                 .style("opacity", 0);
         });
 
-    
+      
+
+
+
 
 });
 

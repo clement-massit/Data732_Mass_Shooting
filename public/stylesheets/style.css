@@ -123,7 +123,11 @@ div.tooltip {
   padding: 7px;
 }
 
-
+#text {
+  margin-top: 20px;
+  color: aqua;
+  /*transform: translate(100px, 200px);*/
+}
 
 
 #cards {
