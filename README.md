@@ -1,7 +1,10 @@
 # Data732_Mass_Shooting  
 
-The objective of our project is to visualize and analyze some datas concerning mass shootings int the USA.  
-A map, bar chart and circular packing make the data on a kind of dashboard that can helps us.  
+[![forthebadge](https://forthebadge.com/images/badges/uses-js.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
+
+The objective of our project is to visualize and analyze some datas concerning mass shootings in the USA.  
+The dashboard can help to understand some data concerning mass shootings 
   
 ### Review of our project   
 
@@ -20,7 +23,8 @@ node app.js
 
 ### Authors of the project   
 * KOEBERLE Célien [@koeberlec](https://github.com/koeberlc)
-* MASSIT Clément [@clement-massit](https://github.com/clement-massit)  
+* MASSIT Clément [@clement-massit](https://github.com/clement-massit)    
+
 
 
 
