@@ -19,6 +19,10 @@ npm install
 ```
 node app.js
 ```  
+4️⃣ Go to your browser   
+```
+localhost:3000/mass_shooting_us
+```   
 
 ### Authors of the project   
 * KOEBERLE Célien [@koeberlec](https://github.com/koeberlc)
